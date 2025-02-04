@@ -9,10 +9,10 @@ class Llmdog < Formula
 
   if Hardware::CPU.arm?
     url "https://github.com/doganarif/llmdog/releases/download/v1.0.0/llmdog_v1.0.0_darwin_arm64.tar.gz"
-    sha256 "d14ebd03e21f071d79f01c51f4656cf597f18c36f40a26a22565c909093dbed8"
+    sha256 "96496c24f95541d383bfbe000fb56eb81f9ed928fade243a5f858b044223422d"
   else
     url "https://github.com/doganarif/llmdog/releases/download/v1.0.0/llmdog_v1.0.0_darwin_amd64.tar.gz"
-    sha256 "ab09606f4135c6cc19a528b463ee6468153c6ef6e7fb537dbb12abef466cd3c2"
+    sha256 "e78ea3fafb928d9979dd95820af54ea34b01be7e334391305f23b39619366bfc"
   end
 
   depends_on "go" => :build
