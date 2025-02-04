@@ -6,24 +6,28 @@ class Llmdog < Formula
   desc "Prepare files for LLM consumption"
   homepage "https://github.com/doganarif/llmdog"
   license "MIT"
-  version "1.0.0"
 
   if Hardware::CPU.arm?
-    url "https://github.com/doganarif/llmdog/releases/download/v1.0.0/llmdog_v${VERSION}_darwin_arm64.tar.gz"
-    sha256 "96496c24f95541d383bfbe000fb56eb81f9ed928fade243a5f858b044223422d"
+    url "https://github.com/doganarif/llmdog/releases/download/v1.0.0/llmdog_v1.0.0_darwin_arm64.tar.gz"
+    sha256 "d14ebd03e21f071d79f01c51f4656cf597f18c36f40a26a22565c909093dbed8"
   else
-    url "https://github.com/doganarif/llmdog/releases/download/v1.0.0/llmdog_v${VERSION}_darwin_amd64.tar.gz"
-    sha256 "e78ea3fafb928d9979dd95820af54ea34b01be7e334391305f23b39619366bfc"
+    url "https://github.com/doganarif/llmdog/releases/download/v1.0.0/llmdog_v1.0.0_darwin_amd64.tar.gz"
+    sha256 "ab09606f4135c6cc19a528b463ee6468153c6ef6e7fb537dbb12abef466cd3c2"
   end
 
   depends_on "go" => :build
 
   def install
-    # The tarball contains the binary named "llmdog"
-    bin.install "llmdog"
+    if Hardware::CPU.arm?
+      # The ARM tarball contains a file named "llmdog_arm64"
+      bin.install "llmdog_arm64" => "llmdog"
+    else
+      # The AMD64 tarball contains a file named "llmdog_amd64"
+      bin.install "llmdog_amd64" => "llmdog"
+    end
   end
 
   test do
-    assert_match "llmdog version", shell_output("\#{bin}/llmdog --version")
+    assert_match "llmdog version", shell_output("#{bin}/llmdog --version")
   end
 end
