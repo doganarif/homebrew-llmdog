@@ -18,17 +18,13 @@ class Llmdog < Formula
   depends_on "go" => :build
 
   def install
-    # If the tarball already contains the binary as "llmdog", this is sufficient.
-    # Otherwise, if the binary is named differently (e.g. "llmdog_arm64" or "llmdog_amd64"),
-    # rename it to "llmdog" before installing.
-    #
-    # For example, you could uncomment and adjust the following lines if needed:
-    # if Hardware::CPU.arm?
-    #   mv "llmdog_arm64", "llmdog"
-    # else
-    #   mv "llmdog_amd64", "llmdog"
-    # end
-    bin.install "llmdog"
+    if Hardware::CPU.arm?
+      # The ARM tarball contains a file named "llmdog_arm64"
+      bin.install "llmdog_arm64" => "llmdog"
+    else
+      # The AMD64 tarball contains a file named "llmdog_amd64"
+      bin.install "llmdog_amd64" => "llmdog"
+    end
   end
 
   test do
