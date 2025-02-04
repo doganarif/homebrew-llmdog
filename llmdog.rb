@@ -17,16 +17,6 @@ class Llmdog < Formula
 
   depends_on "go" => :build
 
-  def install
-    if Hardware::CPU.arm?
-      # The ARM tarball contains a file named "llmdog_arm64"
-      bin.install "llmdog_arm64" => "llmdog"
-    else
-      # The AMD64 tarball contains a file named "llmdog_amd64"
-      bin.install "llmdog_amd64" => "llmdog"
-    end
-  end
-
   test do
     assert_match "llmdog version", shell_output("#{bin}/llmdog --version")
   end
