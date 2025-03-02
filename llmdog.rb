@@ -9,10 +9,10 @@ class Llmdog < Formula
   version "2.0.0"
 
   if Hardware::CPU.arm?
-    url "https://github.com/doganarif/llmdog/releases/download/v2.0.0/llmdog_v${VERSION}_darwin_arm64.tar.gz"
+    url "https://github.com/doganarif/llmdog/releases/download/v#{version}/llmdog_v#{version}_darwin_arm64.tar.gz"
     sha256 "726a42a3d2971c2598a5debf20747135eb1346d8357bc014d1c03f27d8939f6f"
   else
-    url "https://github.com/doganarif/llmdog/releases/download/v2.0.0/llmdog_v${VERSION}_darwin_amd64.tar.gz"
+    url "https://github.com/doganarif/llmdog/releases/download/v#{version}/llmdog_v#{version}_darwin_amd64.tar.gz"
     sha256 "92dfd3557a84f56f880af569e32abc45d365eb5369353b35a597cc27b63a5a07"
   end
 
